@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const WHATSAPP_URL = "https://wa.me/5511985408448";
+const INSTAGRAM_URL = "https://www.instagram.com/casadopanettone_ofc/";
+
 const videos = [
   { src: "/casa-reel-08.mp4", label: "Uma receita para olhar de perto" },
   { src: "/casa-reel-09.mp4", label: "O sabor servido à mesa" },
@@ -48,7 +51,6 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [product, setProduct] = useState<string | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
-  const [contactNotice, setContactNotice] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
   const closeModalRef = useRef<HTMLButtonElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -104,7 +106,7 @@ export default function Home() {
     return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
   }, [menuOpen, product]);
 
-  const order = () => { setContactNotice(true); document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" }); };
+  const order = () => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
   const moveReels = (direction: number) => reelRowRef.current?.scrollBy({ left: direction * Math.min(430, window.innerWidth * .78), behavior: "smooth" });
   const movePhotos = (direction: number) => photoRowRef.current?.scrollBy({ left: direction * Math.min(560, window.innerWidth * .86), behavior: "smooth" });
 
@@ -220,7 +222,7 @@ export default function Home() {
 
       <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i} aria-controls={`faq-answer-${i}`}><span>0{i+1}</span>{q}<b aria-hidden="true">{activeFaq===i?"−":"+"}</b></button><div className="answer" id={`faq-answer-${i}`} aria-hidden={activeFaq!==i}><p>{a}</p></div></div>)}</div></section>
 
-      <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone.</p><button className="button buttonCream" onClick={()=>setContactNotice(true)}>Quero fazer meu pedido <span>↗</span></button>{contactNotice&&<div className="notice" role="status">O contato oficial será adicionado aqui. Enquanto isso, fale com a loja pelos canais oficiais da marca.</div>}</section>
+      <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone pelo WhatsApp.</p><button className="button buttonCream" onClick={order}>Quero fazer meu pedido <span>↗</span></button><a className="contactInstagram" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Acompanhar no Instagram <span>↗</span></a></section>
 
       <div className="mobileAction" aria-label="Ação rápida"><button onClick={order}><span>Fazer meu pedido</span><b>↗</b></button></div>
 
@@ -232,7 +234,7 @@ export default function Home() {
         <div className="footerMiddle">
           <div className="footerSignature"><b>Casa do Panettone</b><p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p><button className="footerContact" onClick={order}>Falar com a loja <span>↗</span></button></div>
           <div className="footerColumn"><p className="footerLabel">Links rápidos</p><a href="#inicio">Início <span>↗</span></a><a href="#sabores">Sabores <span>↗</span></a><a href="#nossa-casa">Nossa casa <span>↗</span></a><a href="#experiencia">Experiência <span>↗</span></a><a href="#contato">Contato <span>↗</span></a></div>
-          <div className="footerColumn"><p className="footerLabel">Visite e acompanhe</p><button onClick={order}>WhatsApp <span>↗</span></button><p>Instagram · perfil oficial</p><p>Endereço · consulte a localização</p><p>Horário · confirme antes de visitar</p></div>
+          <div className="footerColumn"><p className="footerLabel">Visite e acompanhe</p><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp <span>↗</span></a><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram <span>↗</span></a><p>Endereço · consulte a localização</p><p>Horário · confirme antes de visitar</p></div>
           <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
         </div>
         <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">Feito com carinho · servido com sabor</span><span>Todos os direitos reservados</span></div>
