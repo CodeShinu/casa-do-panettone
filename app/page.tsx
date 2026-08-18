@@ -25,14 +25,47 @@ export default function Home() {
   const [product, setProduct] = useState<string | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [contactNotice, setContactNotice] = useState(false);
+  const [activeSection, setActiveSection] = useState("inicio");
   const closeModalRef = useRef<HTMLButtonElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+    let frame = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const updateScroll = () => {
+      frame = 0;
+      const top = window.scrollY;
+      const distance = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      setScrolled(top > 40);
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${Math.min(1, top / distance)})`;
+      if (heroRef.current && finePointer && !reducedMotion) heroRef.current.style.setProperty("--hero-shift", `${Math.min(54, top * .075)}px`);
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateScroll); };
+    updateScroll(); window.addEventListener("scroll", onScroll, { passive: true });
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("isVisible")), { threshold: .14 });
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveSection(visible.target.id);
+    }, { rootMargin: "-28% 0px -58%", threshold: [0, .2, .5] });
+    ["inicio","sabores","diferenciais","nossa-casa","visite"].forEach(id => { const section = document.getElementById(id); if (section) sectionObserver.observe(section); });
+    const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      const video = entry.target as HTMLVideoElement;
+      if (!entry.isIntersecting) video.pause();
+      else if (video.classList.contains("heroVideo") && !document.hidden) video.play().catch(() => undefined);
+    }), { threshold: .12 });
+    document.querySelectorAll("video").forEach(video => videoObserver.observe(video));
+    const cards = document.querySelectorAll<HTMLElement>(".productCard,.whyCard");
+    const onPointer = (event: Event) => {
+      const pointer = event as PointerEvent; const card = pointer.currentTarget as HTMLElement; const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mouse-x", `${pointer.clientX - rect.left}px`); card.style.setProperty("--mouse-y", `${pointer.clientY - rect.top}px`);
+    };
+    if (finePointer && !reducedMotion) cards.forEach(card => card.addEventListener("pointermove", onPointer, { passive: true }));
+    const onVisibility = () => document.body.classList.toggle("tabHidden", document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => { window.removeEventListener("scroll", onScroll); if(frame) cancelAnimationFrame(frame); observer.disconnect(); sectionObserver.disconnect(); videoObserver.disconnect(); cards.forEach(card => card.removeEventListener("pointermove", onPointer)); document.removeEventListener("visibilitychange", onVisibility); document.body.classList.remove("tabHidden"); };
   }, []);
 
   useEffect(() => {
@@ -50,12 +83,13 @@ export default function Home() {
   return (
     <main>
       <a className="skipLink" href="#conteudo">Pular para o conteúdo</a>
+      <div className="scrollProgress" ref={progressRef} aria-hidden="true" />
       <header className={`siteHeader ${scrolled ? "isScrolled" : ""}`}>
         <a className="brand" href="#inicio" aria-label="Casa do Panettone, início">
           <span className="brandMark"><img src="/logo-premium.png" alt="" /></span>
           <span className="brandType"><b>Casa do Panettone</b><small>Loja de fábrica</small></span>
         </a>
-        <nav className="navPill" aria-label="Navegação principal"><a href="#sabores"><span>01</span> Sabores</a><a href="#diferenciais"><span>02</span> Diferenciais</a><a href="#nossa-casa"><span>03</span> Nossa casa</a><a href="#visite"><span>04</span> Visite</a></nav>
+        <nav className="navPill" aria-label="Navegação principal"><a className={activeSection==="sabores"?"active":""} href="#sabores"><span>01</span> Sabores</a><a className={activeSection==="diferenciais"?"active":""} href="#diferenciais"><span>02</span> Diferenciais</a><a className={activeSection==="nossa-casa"?"active":""} href="#nossa-casa"><span>03</span> Nossa casa</a><a className={activeSection==="visite"?"active":""} href="#visite"><span>04</span> Visite</a></nav>
         <button className="button headerCta" onClick={order}><span className="ctaDot"/> Fazer meu pedido <b>↗</b></button>
         <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} aria-controls="menu-mobile"><span/><span/></button>
       </header>
@@ -64,7 +98,7 @@ export default function Home() {
         {[["Sabores","#sabores"],["Nossa casa","#nossa-casa"],["Experiência","#experiencia"],["Contato","#contato"]].map(([label,href],i)=><a key={href} href={href} onClick={()=>setMenuOpen(false)}><small>0{i+1}</small>{label}</a>)}
       </div>
 
-      <section className="hero" id="inicio">
+      <section className="hero" id="inicio" ref={heroRef}>
         <video className="heroVideo" autoPlay muted loop playsInline poster="/produto-hero.jpg"><source src="/hero.mp4" type="video/mp4" /></video>
         <div className="heroShade" />
         <div className="heroContent" id="conteudo">
