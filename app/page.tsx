@@ -222,7 +222,7 @@ export default function Home() {
 
       <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i} aria-controls={`faq-answer-${i}`}><span>0{i+1}</span>{q}<b aria-hidden="true">{activeFaq===i?"−":"+"}</b></button><div className="answer" id={`faq-answer-${i}`} aria-hidden={activeFaq!==i}><p>{a}</p></div></div>)}</div></section>
 
-      <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone pelo WhatsApp.</p><button className="button buttonCream" onClick={order}>Quero fazer meu pedido <span>↗</span></button><a className="contactInstagram" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Acompanhar no Instagram <span>↗</span></a></section>
+      <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone pelo WhatsApp.</p><div className="contactActions"><button className="button buttonCream" onClick={order}>Quero fazer meu pedido <span>↗</span></button><a className="contactInstagram" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><span><small>Veja novidades e bastidores</small>Acompanhar no Instagram</span><b>↗</b></a></div></section>
 
       <div className="mobileAction" aria-label="Ação rápida"><button onClick={order}><span>Fazer meu pedido</span><b>↗</b></button></div>
 
@@ -242,6 +242,7 @@ export default function Home() {
           <div className="footerColumn footerChannels"><p className="footerLabel">Visite e acompanhe</p><a className="channelCard" href={WHATSAPP_URL} target="_blank" rel="noreferrer"><span><small>Pedidos e dúvidas</small><b>WhatsApp</b></span><i>↗</i></a><a className="channelCard" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><span><small>Novidades e bastidores</small><b>Instagram</b></span><i>↗</i></a><div className="footerInfo"><p><small>Localização</small>Consulte a rota com a equipe</p><p><small>Funcionamento</small>Confirme antes de visitar</p></div></div>
           <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
         </div>
+        <div className="footerHighlights" aria-label="Diferenciais da marca"><span><small>01</small>Loja de fábrica</span><span><small>02</small>Feito para compartilhar</span><span><small>03</small>Sabores para celebrar</span><span><small>04</small>Direto da nossa casa</span></div>
         <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">Feito com carinho · servido com sabor</span><span>Todos os direitos reservados</span></div>
       </footer>
 
