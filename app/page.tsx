@@ -37,9 +37,12 @@ export default function Home() {
   return (
     <main>
       <header className={`siteHeader ${scrolled ? "isScrolled" : ""}`}>
-        <a className="brand" href="#inicio" aria-label="Casa do Panettone, início"><img src="/logo.jpg" alt="Casa do Panettone — Loja de Fábrica" /></a>
-        <nav aria-label="Navegação principal"><a href="#sabores">Sabores</a><a href="#nossa-casa">Nossa casa</a><a href="#experiencia">Experiência</a><a href="#contato">Contato</a></nav>
-        <button className="button headerCta" onClick={order}>Fazer meu pedido <span>↗</span></button>
+        <a className="brand" href="#inicio" aria-label="Casa do Panettone, início">
+          <span className="brandMark"><img src="/logo-premium.png" alt="" /></span>
+          <span className="brandType"><b>Casa do Panettone</b><small>Loja de fábrica</small></span>
+        </a>
+        <nav className="navPill" aria-label="Navegação principal"><a href="#sabores"><span>01</span> Sabores</a><a href="#nossa-casa"><span>02</span> Nossa casa</a><a href="#experiencia"><span>03</span> Experiência</a><a href="#contato"><span>04</span> Contato</a></nav>
+        <button className="button headerCta" onClick={order}><span className="ctaDot"/> Fazer meu pedido <b>↗</b></button>
         <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu" aria-expanded={menuOpen}><span/><span/></button>
       </header>
 
@@ -97,7 +100,20 @@ export default function Home() {
 
       <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone.</p><button className="button buttonCream" onClick={()=>setContactNotice(true)}>Quero fazer meu pedido <span>↗</span></button>{contactNotice&&<div className="notice" role="status">O contato oficial será adicionado aqui. Enquanto isso, fale com a loja pelos canais oficiais da marca.</div>}</section>
 
-      <footer><div className="footerBrand"><img src="/logo.jpg" alt="Casa do Panettone"/><p>Da nossa casa para a sua.</p></div><div><p className="footerLabel">Navegue</p><a href="#sabores">Sabores</a><a href="#nossa-casa">Nossa casa</a><a href="#experiencia">Experiência</a></div><div><p className="footerLabel">Fale com a gente</p><button onClick={order}>Fazer um pedido</button><p>Loja de fábrica</p></div><div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span>Feito com sabor.</span></div></footer>
+      <footer>
+        <div className="footerTop">
+          <div className="footerEmblem"><img src="/logo-premium.png" alt="Casa do Panettone — Loja de Fábrica"/></div>
+          <div className="footerStatement"><p className="footerLabel">Uma última fatia?</p><h2>Da nossa casa<br/><em>para a sua.</em></h2></div>
+          <button className="footerOrder" onClick={order}><span>Fazer meu<br/>pedido</span><b>↗</b></button>
+        </div>
+        <div className="footerMiddle">
+          <div className="footerSignature"><b>Casa do Panettone</b><p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p></div>
+          <div className="footerColumn"><p className="footerLabel">Explore</p><a href="#inicio">Início <span>↗</span></a><a href="#sabores">Sabores <span>↗</span></a><a href="#nossa-casa">Nossa casa <span>↗</span></a><a href="#experiencia">Experiência <span>↗</span></a></div>
+          <div className="footerColumn"><p className="footerLabel">Atendimento</p><button onClick={order}>Fazer um pedido <span>↗</span></button><a href="#contato">Fale com a gente <span>↗</span></a><p>Loja de fábrica</p></div>
+          <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
+        </div>
+        <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">✦ Feito com carinho · servido com sabor ✦</span><span>Todos os direitos reservados</span></div>
+      </footer>
 
       {product&&<div className="modalBackdrop" onClick={()=>setProduct(null)} role="presentation"><div className="productModal" role="dialog" aria-modal="true" aria-label={product} onClick={e=>e.stopPropagation()}><button className="close" onClick={()=>setProduct(null)} aria-label="Fechar">×</button><p className="sectionLabel">Casa do Panettone</p><h2>{product}</h2><p>Uma receita macia e cheia de sabor, feita para deixar o momento ainda mais especial.</p><button className="button buttonGold" onClick={()=>{setProduct(null);order()}}>Quero este sabor <span>↗</span></button></div></div>}
     </main>
