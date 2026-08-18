@@ -232,9 +232,14 @@ export default function Home() {
           <button className="footerOrder" onClick={order}><span>Fazer meu<br/>pedido</span><b>↗</b></button>
         </div>
         <div className="footerMiddle">
-          <div className="footerSignature"><b>Casa do Panettone</b><p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p><button className="footerContact" onClick={order}>Falar com a loja <span>↗</span></button></div>
-          <div className="footerColumn"><p className="footerLabel">Links rápidos</p><a href="#inicio">Início <span>↗</span></a><a href="#sabores">Sabores <span>↗</span></a><a href="#nossa-casa">Nossa casa <span>↗</span></a><a href="#experiencia">Experiência <span>↗</span></a><a href="#contato">Contato <span>↗</span></a></div>
-          <div className="footerColumn"><p className="footerLabel">Visite e acompanhe</p><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp <span>↗</span></a><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram <span>↗</span></a><p>Endereço · consulte a localização</p><p>Horário · confirme antes de visitar</p></div>
+          <div className="footerSignature">
+            <div className="footerBrandLockup"><span><img src="/logo-casa-nova.png" alt=""/></span><small>Loja de fábrica</small></div>
+            <h3>Casa do<br/><em>Panettone.</em></h3>
+            <p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p>
+            <button className="footerContact" onClick={order}>Falar com a loja <span>↗</span></button>
+          </div>
+          <nav className="footerColumn footerNav" aria-label="Links do rodapé"><p className="footerLabel">Explore a casa</p>{[["01","Início","#inicio"],["02","Sabores","#sabores"],["03","Nossa casa","#nossa-casa"],["04","Experiência","#experiencia"],["05","Contato","#contato"]].map(([n,label,href])=><a href={href} key={href}><small>{n}</small><b>{label}</b><span>↗</span></a>)}</nav>
+          <div className="footerColumn footerChannels"><p className="footerLabel">Visite e acompanhe</p><a className="channelCard" href={WHATSAPP_URL} target="_blank" rel="noreferrer"><span><small>Pedidos e dúvidas</small><b>WhatsApp</b></span><i>↗</i></a><a className="channelCard" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><span><small>Novidades e bastidores</small><b>Instagram</b></span><i>↗</i></a><div className="footerInfo"><p><small>Localização</small>Consulte a rota com a equipe</p><p><small>Funcionamento</small>Confirme antes de visitar</p></div></div>
           <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
         </div>
         <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">Feito com carinho · servido com sabor</span><span>Todos os direitos reservados</span></div>
