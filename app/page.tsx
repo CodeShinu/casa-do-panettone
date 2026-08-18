@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const videos = [
+  { src: "/casa-reel-08.mp4", label: "Uma receita para olhar de perto" },
+  { src: "/casa-reel-09.mp4", label: "O sabor servido à mesa" },
+  { src: "/casa-reel-10.mp4", label: "Bastidores da nossa casa" },
+  { src: "/casa-reel-11.mp4", label: "Mais um momento de produção" },
   { src: "/casa-reel-01.mp4", label: "Sabor que começa pelos olhos" },
   { src: "/casa-reel-02.mp4", label: "Um carinho em forma de receita" },
   { src: "/casa-reel-03.mp4", label: "Direto da nossa casa" },
@@ -24,6 +28,19 @@ const faqs = [
   ["Onde fica a loja de fábrica?", "O endereço e o melhor horário para visitar podem ser confirmados diretamente com a equipe."],
 ];
 
+const photoStories = [
+  ["/journal-01.jpg","Saindo do forno","A beleza de uma fornada recém-finalizada."],
+  ["/journal-02.jpg","Macio por dentro","A textura que transforma a primeira fatia em convite para a segunda."],
+  ["/journal-03.jpg","Dourado por fora","Receitas generosas, prontas para ocupar o centro da mesa."],
+  ["/journal-04.jpg","Combinação perfeita","Panettone, café e tempo para aproveitar."],
+  ["/journal-05.jpg","Cada pedaço conta","Frutas e textura em uma experiência cheia de sabor."],
+  ["/journal-06.jpg","Uma casa de sabores","Opções para presentear, compartilhar e celebrar."],
+  ["/journal-07.jpg","Pronto para levar","Da nossa loja de fábrica para a sua mesa."],
+  ["/journal-08.jpg","O favorito da casa","Gotas sabor chocolate em uma receita irresistível."],
+  ["/journal-09.jpg","Escolha o seu","Frutas ou chocolate: difícil é ficar com apenas um."],
+  ["/journal-10.jpg","Para todos os momentos","Uma seleção feita para reunir pessoas."],
+];
+
 const tickerPhrases = ["Feito para compartilhar", "Gotas de chocolate", "Frutas selecionadas", "Sabor que abraça", "Direto da loja de fábrica", "Receita feita com carinho", "Tradição em cada pedaço", "Ingredientes selecionados", "Um presente cheio de sabor", "Momentos que ficam na memória", "Qualidade artesanal", "Perfeito para celebrar", "Do forno para a sua mesa", "Carinho em cada detalhe", "Uma experiência deliciosa", "Feito para reunir pessoas", "Sabor de momentos especiais", "Fresquinho e irresistível", "Tradição que conquista", "Compartilhe felicidade"];
 
 export default function Home() {
@@ -37,6 +54,7 @@ export default function Home() {
   const progressRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const reelRowRef = useRef<HTMLDivElement>(null);
+  const photoRowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -88,6 +106,7 @@ export default function Home() {
 
   const order = () => { setContactNotice(true); document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" }); };
   const moveReels = (direction: number) => reelRowRef.current?.scrollBy({ left: direction * Math.min(430, window.innerWidth * .78), behavior: "smooth" });
+  const movePhotos = (direction: number) => photoRowRef.current?.scrollBy({ left: direction * Math.min(560, window.innerWidth * .86), behavior: "smooth" });
 
   return (
     <main>
@@ -139,6 +158,11 @@ export default function Home() {
             <div className="productInfo"><div><p>Clássico · 400 g</p><h3>Panettone<br/><em>de frutas</em></h3></div><button aria-label="Ver panettone de frutas">↗</button></div>
           </article>
         </div>
+      </section>
+
+      <section className="photoJournal" aria-labelledby="journal-title">
+        <div className="photoJournalHead reveal"><div><p className="sectionLabel">Caderno de sabores</p><h2 id="journal-title">De perto,<br/><em>é ainda melhor.</em></h2></div><div><p>Texturas, detalhes e momentos reais da Casa do Panettone — porque algumas imagens quase têm cheiro de fornada nova.</p><div className="journalControls"><button onClick={()=>movePhotos(-1)} aria-label="Fotos anteriores">←</button><span>Deslize para conhecer</span><button onClick={()=>movePhotos(1)} aria-label="Próximas fotos">→</button></div></div></div>
+        <div className="photoJournalRow" ref={photoRowRef}>{photoStories.map(([src,title,copy],i)=><figure className={`journalCard journalCard${i%3}`} key={src}><div className="journalImage"><img src={src} alt={`${title}. ${copy}`} width="1440" height="1920" loading="lazy" decoding="async"/><span>{String(i+1).padStart(2,"0")}</span></div><figcaption><h3>{title}</h3><p>{copy}</p></figcaption></figure>)}</div>
       </section>
 
       <section className="whyUs" id="diferenciais">
