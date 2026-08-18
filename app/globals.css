@@ -53,3 +53,11 @@ footer{display:block;padding:0 max(28px,calc((100vw - 1400px)/2));background:rad
 
 @media(max-width:900px){.giftSection,.foodInfo{grid-template-columns:1fr;gap:60px;padding:100px 20px}.giftCopy h2,.foodInfoTitle h2{font-size:clamp(3.8rem,15vw,6rem)}.giftMosaic{grid-template-columns:1fr 1fr}.giftTall{min-height:500px}.giftSmall{min-height:300px}.giftQuote{grid-column:2}.foodInfo{gap:45px}.mobileAction{position:fixed;z-index:42;display:block;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));padding:5px;border-radius:999px;background:rgba(255,248,236,.94);backdrop-filter:blur(16px);box-shadow:0 14px 45px rgba(42,18,7,.22)}.mobileAction button{width:100%;min-height:52px;padding:0 10px 0 22px;border:0;border-radius:999px;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:.1em;font-size:.66rem;font-weight:700}.mobileAction b{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.17)}footer{padding-bottom:86px!important}}
 @media(max-width:560px){.giftMosaic{grid-template-columns:1fr}.giftTall{grid-row:auto;min-height:520px}.giftSmall{min-height:330px}.giftQuote{grid-column:auto}.giftActions{align-items:flex-start;flex-direction:column}}
+
+/* Natural visual language and reliable FAQ */
+.crumb{font:italic 5rem/1 Georgia,serif;letter-spacing:-.06em;bottom:-8px;right:4%;transform:rotate(-7deg)}
+.whyWord{margin:auto 0;font:italic 1.05rem Georgia,serif;color:var(--gold);padding-bottom:8px;border-bottom:1px solid currentColor;width:max-content}.whyCard.featured .whyWord{color:#e6a05a}
+.giftQuote{display:block}.giftQuote small{display:block;margin-bottom:16px;text-transform:uppercase;letter-spacing:.16em;font-size:.52rem;color:rgba(48,25,15,.62)}
+.visitBadge{padding-left:18px}
+.faqItem{opacity:1!important;transform:none!important;visibility:visible!important}.faqItem button{position:relative;z-index:1;color:var(--chocolate)}
+.answer{display:block!important;max-height:0;opacity:0;overflow:hidden;visibility:hidden;transition:max-height .3s ease,opacity .2s ease,visibility 0s linear .3s!important}.answer p{overflow:visible!important}.faqItem.active .answer{max-height:220px;opacity:1;visibility:visible;transition:max-height .3s ease,opacity .2s ease!important}

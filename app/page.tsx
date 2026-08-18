@@ -81,7 +81,7 @@ export default function Home() {
       <section className="manifesto reveal">
         <p className="sectionLabel">Tem coisas que a gente não explica. Sente.</p>
         <h2>Macio por dentro.<br/><em>Dourado por fora.</em><br/>Difícil é parar na primeira fatia.</h2>
-        <div className="crumb" aria-hidden="true">✦</div>
+        <div className="crumb" aria-hidden="true">Casa</div>
       </section>
 
       <section className="products" id="sabores">
@@ -101,9 +101,9 @@ export default function Home() {
       <section className="whyUs" id="diferenciais">
         <div className="whyIntro reveal"><p className="sectionLabel">O cuidado mora nos detalhes</p><h2>Mais que panettone.<br/><em>Um momento inteiro.</em></h2><p>Cada escolha importa: o sabor, a textura, a apresentação e a alegria de colocar algo especial no centro da mesa.</p></div>
         <div className="whyGrid">
-          <article className="whyCard reveal"><span>01</span><div className="whyIcon">✦</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
-          <article className="whyCard featured reveal"><span>02</span><div className="whyIcon">◌</div><h3>Receitas para<br/>compartilhar</h3><p>Panettones que chegam à mesa para acompanhar encontros, presentes e momentos especiais.</p></article>
-          <article className="whyCard reveal"><span>03</span><div className="whyIcon">⌁</div><h3>Sabor em cada<br/>pedaço</h3><p>Opções com gotas sabor chocolate e frutas para escolher a receita que combina com você.</p></article>
+          <article className="whyCard reveal"><span>01</span><div className="whyWord">Fábrica</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
+          <article className="whyCard featured reveal"><span>02</span><div className="whyWord">Encontro</div><h3>Receitas para<br/>compartilhar</h3><p>Panettones que chegam à mesa para acompanhar encontros, presentes e momentos especiais.</p></article>
+          <article className="whyCard reveal"><span>03</span><div className="whyWord">Sabor</div><h3>Sabor em cada<br/>pedaço</h3><p>Opções com gotas sabor chocolate e frutas para escolher a receita que combina com você.</p></article>
         </div>
       </section>
 
@@ -131,7 +131,7 @@ export default function Home() {
 
       <section className="giftSection">
         <div className="giftCopy reveal"><p className="sectionLabel">Para dividir, presentear e celebrar</p><h2>Um gesto simples.<br/><em>Cheio de sabor.</em></h2><p>Seja para levar à mesa, surpreender alguém ou organizar um pedido em quantidade, a equipe pode orientar sobre as opções disponíveis.</p><div className="giftActions"><button className="button buttonGold" onClick={order}>Consultar opções <span>↗</span></button><a className="giftLink" href="#sabores">Ver sabores <span>↓</span></a></div></div>
-        <div className="giftMosaic reveal"><div className="giftTall"><img src="/produto-close.jpg" alt="Panettone com gotas sabor chocolate" width="1080" height="1440" loading="lazy" decoding="async"/></div><div className="giftSmall"><img src="/produto-hero.jpg" alt="Seleção de panettones da marca" width="1440" height="1920" loading="lazy" decoding="async"/></div><div className="giftQuote"><span>✦</span><p>Um presente que começa pelos olhos e fica na memória pelo sabor.</p></div></div>
+        <div className="giftMosaic reveal"><div className="giftTall"><img src="/produto-close.jpg" alt="Panettone com gotas sabor chocolate" width="1080" height="1440" loading="lazy" decoding="async"/></div><div className="giftSmall"><img src="/produto-hero.jpg" alt="Seleção de panettones da marca" width="1440" height="1920" loading="lazy" decoding="async"/></div><div className="giftQuote"><small>Para presentear</small><p>Um presente que começa pelos olhos e fica na memória pelo sabor.</p></div></div>
       </section>
 
       <section className="foodInfo">
@@ -140,11 +140,11 @@ export default function Home() {
       </section>
 
       <section className="visitUs" id="visite">
-        <div className="visitPhoto reveal"><img src="/produto-hero.jpg" alt="Produtos disponíveis na Casa do Panettone" width="1440" height="1920" loading="lazy" decoding="async"/><div className="visitBadge"><span>✦</span>Loja de fábrica</div></div>
+        <div className="visitPhoto reveal"><img src="/produto-hero.jpg" alt="Produtos disponíveis na Casa do Panettone" width="1440" height="1920" loading="lazy" decoding="async"/><div className="visitBadge">Loja de fábrica</div></div>
         <div className="visitCopy reveal"><p className="sectionLabel">Venha conhecer a nossa casa</p><h2>Mais perto do<br/><em>sabor.</em></h2><p>Quer receber a localização, consultar o horário de atendimento ou saber o que está disponível hoje? Fale com a equipe antes de visitar.</p><div className="visitFacts"><div><small>Localização</small><strong>Consulte a rota com a equipe</strong></div><div><small>Funcionamento</small><strong>Confirme o horário de hoje</strong></div><div><small>Atendimento</small><strong>Direto com a loja de fábrica</strong></div></div><button className="button buttonGold" onClick={order}>Pedir informações <span>↗</span></button></div>
       </section>
 
-      <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem reveal ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i}><span>0{i+1}</span>{q}<b>{activeFaq===i?"−":"+"}</b></button><div className="answer"><p>{a}</p></div></div>)}</div></section>
+      <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i} aria-controls={`faq-answer-${i}`}><span>0{i+1}</span>{q}<b aria-hidden="true">{activeFaq===i?"−":"+"}</b></button><div className="answer" id={`faq-answer-${i}`} aria-hidden={activeFaq!==i}><p>{a}</p></div></div>)}</div></section>
 
       <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone.</p><button className="button buttonCream" onClick={()=>setContactNotice(true)}>Quero fazer meu pedido <span>↗</span></button>{contactNotice&&<div className="notice" role="status">O contato oficial será adicionado aqui. Enquanto isso, fale com a loja pelos canais oficiais da marca.</div>}</section>
 
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="footerColumn"><p className="footerLabel">Visite e acompanhe</p><button onClick={order}>WhatsApp <span>↗</span></button><p>Instagram · perfil oficial</p><p>Endereço · consulte a localização</p><p>Horário · confirme antes de visitar</p></div>
           <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
         </div>
-        <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">✦ Feito com carinho · servido com sabor ✦</span><span>Todos os direitos reservados</span></div>
+        <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">Feito com carinho · servido com sabor</span><span>Todos os direitos reservados</span></div>
       </footer>
 
       {product&&<div className="modalBackdrop" onClick={()=>setProduct(null)} role="presentation"><div className="productModal" role="dialog" aria-modal="true" aria-label={product} onClick={e=>e.stopPropagation()}><button ref={closeModalRef} className="close" onClick={()=>setProduct(null)} aria-label="Fechar">×</button><p className="sectionLabel">Casa do Panettone</p><h2>{product}</h2><p>Uma receita macia e cheia de sabor, feita para deixar o momento ainda mais especial.</p><button className="button buttonGold" onClick={()=>{setProduct(null);order()}}>Quero este sabor <span>↗</span></button></div></div>}
