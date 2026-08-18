@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 
 const videos = [
+  { src: "/casa-reel-01.mp4", label: "Sabor que começa pelos olhos" },
+  { src: "/casa-reel-02.mp4", label: "Um carinho em forma de receita" },
+  { src: "/casa-reel-03.mp4", label: "Direto da nossa casa" },
+  { src: "/casa-reel-04.mp4", label: "Detalhes que dão água na boca" },
+  { src: "/casa-reel-05.mp4", label: "Feito para momentos especiais" },
+  { src: "/casa-reel-06.mp4", label: "A textura de perto" },
+  { src: "/casa-reel-07.mp4", label: "Da fábrica para a sua mesa" },
   { src: "/reel-1.mp4", label: "Um sabor que chama" },
   { src: "/reel-2.mp4", label: "De perto é ainda melhor" },
   { src: "/reel-3.mp4", label: "Momentos da nossa casa" },
@@ -29,6 +36,7 @@ export default function Home() {
   const closeModalRef = useRef<HTMLButtonElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const reelRowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -79,6 +87,7 @@ export default function Home() {
   }, [menuOpen, product]);
 
   const order = () => { setContactNotice(true); document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" }); };
+  const moveReels = (direction: number) => reelRowRef.current?.scrollBy({ left: direction * Math.min(430, window.innerWidth * .78), behavior: "smooth" });
 
   return (
     <main>
@@ -147,8 +156,8 @@ export default function Home() {
       </section>
 
       <section className="experience" id="experiencia">
-        <div className="sectionHead light reveal"><div><p className="sectionLabel">Aperte o play</p><h2>Deu vontade?<br/><em>A gente entende.</em></h2></div><p>Um pouco do que acontece por aqui — e do que pode chegar até a sua mesa.</p></div>
-        <div className="reelRow">{videos.map((video,i)=><figure className="reel reveal" key={video.src}><video controls playsInline preload="metadata" poster={i%2?"/produto-close.jpg":"/produto-hero.jpg"}><source src={video.src} type="video/mp4"/></video><figcaption><span>0{i+1}</span>{video.label}</figcaption></figure>)}</div>
+        <div className="sectionHead light reveal"><div><p className="sectionLabel">Aperte o play</p><h2>Deu vontade?<br/><em>A gente entende.</em></h2></div><div className="experienceIntro"><p>Novos registros da nossa casa, dos produtos e dos detalhes que fazem cada receita chegar à mesa ainda mais especial.</p><div className="reelControls" aria-label="Navegar pelos vídeos"><button onClick={()=>moveReels(-1)} aria-label="Vídeos anteriores">←</button><span>Arraste para explorar</span><button onClick={()=>moveReels(1)} aria-label="Próximos vídeos">→</button></div></div></div>
+        <div className="reelRow" ref={reelRowRef}>{videos.map((video,i)=><figure className="reel reveal" key={video.src}><div className="reelMedia"><video controls playsInline preload="none" poster={i%2?"/produto-close.jpg":"/produto-hero.jpg"}><source src={video.src} type="video/mp4"/></video><span className="reelIndex">{String(i+1).padStart(2,"0")}</span></div><figcaption><span>Casa do Panettone</span>{video.label}</figcaption></figure>)}</div>
       </section>
 
       <section className="occasions"><p className="sectionLabel reveal">Cabe em todos os momentos</p><div className="occasionList">{["Café sem pressa","Um presente gostoso","Mesa cheia de gente","Pedidos em quantidade"].map((item,i)=><div className="occasion reveal" key={item}><span>0{i+1}</span><h3>{item}</h3><b>↗</b></div>)}</div></section>
