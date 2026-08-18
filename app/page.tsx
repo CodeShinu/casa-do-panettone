@@ -150,6 +150,13 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="factoryMoment reveal" aria-label="Panettones recém-produzidos">
+        <img src="/fornada-panettone.webp" alt="Grande fornada de panettones com gotas de chocolate na fábrica" width="1080" height="1920" loading="lazy" decoding="async"/>
+        <div className="factoryShade"/>
+        <div className="factoryMomentCopy"><p className="sectionLabel">Uma fornada cheia de sabor</p><h2>Feitos para chegar<br/><em>fresquinhos à mesa.</em></h2><p>Da produção ao momento de compartilhar, cada panettone carrega o cuidado da nossa casa.</p></div>
+        <span className="factoryCounter">Da fábrica para você</span>
+      </section>
+
       <section className="story" id="nossa-casa">
         <div className="storyMedia reveal"><img src="/produto-hero.jpg" alt="Seleção de produtos da Casa do Panettone" width="1440" height="1920" loading="lazy" decoding="async"/><span>Da nossa casa<br/>para a sua.</span></div>
         <div className="storyCopy reveal"><p className="sectionLabel">Nossa casa</p><h2>Uma receita feita para criar <em>memórias.</em></h2><p>Na Casa do Panettone, cada receita nasce para levar mais sabor à mesa. Da nossa fábrica para a sua casa, unimos carinho, tradição e aquela vontade irresistível de cortar só mais uma fatia.</p><div className="storyPoints"><span><b>01</b>Cuidado em cada receita</span><span><b>02</b>Direto da loja de fábrica</span><span><b>03</b>Perto de quem saboreia</span></div></div>
