@@ -152,11 +152,11 @@ export default function Home() {
         <div className="sectionHead reveal"><div><p className="sectionLabel">Escolha o seu favorito</p><h2>Sabores que<br/>falam por si.</h2></div><p>Do café demorado ao presente inesperado, existe uma receita da nossa casa para deixar o momento ainda mais gostoso.</p></div>
         <div className="productGrid">
           <article className="productCard chocolate reveal" onClick={()=>setProduct("Gotas sabor chocolate")} tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setProduct("Gotas sabor chocolate")}>
-            <div className="productNumber">01</div><div className="productImage"><img src="/produto-close.jpg" alt="Panettone Casa do Panettone com gotas sabor chocolate, 400 gramas" width="1080" height="1440" loading="lazy" decoding="async" /></div>
-            <div className="productInfo"><div><p>Generoso · 400 g</p><h3>Gotas sabor<br/><em>chocolate</em></h3></div><button aria-label="Ver produto com gotas sabor chocolate">↗</button></div>
+            <div className="productNumber">01</div><div className="productImage"><img src="/produto-chocolate-novo.jpeg" alt="Panettone Casa do Panettone com gotas sabor chocolate, 85 gramas" width="1254" height="1254" loading="lazy" decoding="async" /></div>
+            <div className="productInfo"><div><p>Individual · 85 g</p><h3>Gotas sabor<br/><em>chocolate</em></h3></div><button aria-label="Ver produto com gotas sabor chocolate">↗</button></div>
           </article>
           <article className="productCard fruits reveal" onClick={()=>setProduct("Panettone de frutas")} tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setProduct("Panettone de frutas")}>
-            <div className="productNumber">02</div><div className="productImage"><img src="/produto-hero.jpg" alt="Panettones Casa do Panettone de frutas e chocolate" width="1440" height="1920" loading="lazy" decoding="async" /></div>
+            <div className="productNumber">02</div><div className="productImage"><img src="/produto-frutas-novo.jpeg" alt="Panettone de frutas Casa do Panettone, 400 gramas" width="1254" height="1254" loading="lazy" decoding="async" /></div>
             <div className="productInfo"><div><p>Clássico · 400 g</p><h3>Panettone<br/><em>de frutas</em></h3></div><button aria-label="Ver panettone de frutas">↗</button></div>
           </article>
         </div>
