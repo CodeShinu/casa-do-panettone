@@ -61,3 +61,8 @@ footer{display:block;padding:0 max(28px,calc((100vw - 1400px)/2));background:rad
 .visitBadge{padding-left:18px}
 .faqItem{opacity:1!important;transform:none!important;visibility:visible!important}.faqItem button{position:relative;z-index:1;color:var(--chocolate)}
 .answer{display:block!important;max-height:0;opacity:0;overflow:hidden;visibility:hidden;transition:max-height .3s ease,opacity .2s ease,visibility 0s linear .3s!important}.answer p{overflow:visible!important}.faqItem.active .answer{max-height:220px;opacity:1;visibility:visible;transition:max-height .3s ease,opacity .2s ease!important}
+
+/* Custom Casa do Panettone emblem */
+.brandSymbol{width:300px;height:300px;right:3%;bottom:-95px;opacity:.1;transform:rotate(-8deg);border-radius:50%;overflow:hidden;pointer-events:none}.brandSymbol img{display:block;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.whyMark{width:86px;height:86px;margin:auto 0 16px;border-radius:50%;overflow:hidden;border:1px solid rgba(48,25,15,.15);background:var(--cream)}.whyMark img{display:block;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}.whyCard.featured .whyMark{border-color:rgba(255,255,255,.2);box-shadow:0 0 0 8px rgba(255,255,255,.04)}.whyWord{margin:0 0 18px}
+@media(max-width:900px){.brandSymbol{width:210px;height:210px;bottom:-60px;right:-35px}.whyMark{width:74px;height:74px}}
