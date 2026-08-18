@@ -17,6 +17,8 @@ const faqs = [
   ["Onde fica a loja de fábrica?", "O endereço e o melhor horário para visitar podem ser confirmados diretamente com a equipe."],
 ];
 
+const tickerPhrases = ["Feito para compartilhar", "Gotas de chocolate", "Frutas selecionadas", "Sabor que abraça", "Direto da loja de fábrica", "Receita feita com carinho", "Tradição em cada pedaço", "Ingredientes selecionados", "Um presente cheio de sabor", "Momentos que ficam na memória", "Qualidade artesanal", "Perfeito para celebrar", "Do forno para a sua mesa", "Carinho em cada detalhe", "Uma experiência deliciosa", "Feito para reunir pessoas", "Sabor de momentos especiais", "Fresquinho e irresistível", "Tradição que conquista", "Compartilhe felicidade"];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +64,7 @@ export default function Home() {
         <div className="heroFoot"><span>Casa do Panettone · Loja de fábrica</span><span>Role para sentir ↓</span></div>
       </section>
 
-      <div className="ticker"><div><span>Loja de fábrica</span><b>✦</b><span>Feito para compartilhar</span><b>✦</b><span>Gotas de chocolate</span><b>✦</b><span>Frutas selecionadas</span><b>✦</b><span>Sabor que abraça</span><b>✦</b><span>Loja de fábrica</span><b>✦</b><span>Feito para compartilhar</span></div></div>
+      <div className="ticker" aria-label="Diferenciais da Casa do Panettone"><div className="tickerTrack">{[0,1].map(group=><div className="tickerGroup" aria-hidden={group===1} key={group}>{tickerPhrases.map(phrase=><span key={`${group}-${phrase}`}><b>✦</b>{phrase}</span>)}</div>)}</div></div>
 
       <section className="manifesto reveal">
         <p className="sectionLabel">Tem coisas que a gente não explica. Sente.</p>
@@ -84,6 +86,15 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="whyUs">
+        <div className="whyIntro reveal"><p className="sectionLabel">O cuidado mora nos detalhes</p><h2>Mais que panettone.<br/><em>Um momento inteiro.</em></h2><p>Cada escolha importa: o sabor, a textura, a apresentação e a alegria de colocar algo especial no centro da mesa.</p></div>
+        <div className="whyGrid">
+          <article className="whyCard reveal"><span>01</span><div className="whyIcon">✦</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
+          <article className="whyCard featured reveal"><span>02</span><div className="whyIcon">◌</div><h3>Receitas para<br/>compartilhar</h3><p>Panettones que chegam à mesa para acompanhar encontros, presentes e momentos especiais.</p></article>
+          <article className="whyCard reveal"><span>03</span><div className="whyIcon">⌁</div><h3>Sabor em cada<br/>pedaço</h3><p>Opções com gotas sabor chocolate e frutas para escolher a receita que combina com você.</p></article>
+        </div>
+      </section>
+
       <section className="story" id="nossa-casa">
         <div className="storyMedia reveal"><img src="/produto-hero.jpg" alt="Seleção de produtos da Casa do Panettone"/><span>Da nossa casa<br/>para a sua.</span></div>
         <div className="storyCopy reveal"><p className="sectionLabel">Nossa casa</p><h2>Uma receita feita para criar <em>memórias.</em></h2><p>Na Casa do Panettone, cada receita nasce para levar mais sabor à mesa. Da nossa fábrica para a sua casa, unimos carinho, tradição e aquela vontade irresistível de cortar só mais uma fatia.</p><div className="storyPoints"><span><b>01</b>Cuidado em cada receita</span><span><b>02</b>Direto da loja de fábrica</span><span><b>03</b>Perto de quem saboreia</span></div></div>
@@ -96,6 +107,21 @@ export default function Home() {
 
       <section className="occasions"><p className="sectionLabel reveal">Cabe em todos os momentos</p><div className="occasionList">{["Café sem pressa","Um presente gostoso","Mesa cheia de gente","Pedidos em quantidade"].map((item,i)=><div className="occasion reveal" key={item}><span>0{i+1}</span><h3>{item}</h3><b>↗</b></div>)}</div></section>
 
+      <section className="orderGuide">
+        <div className="orderGuideHead reveal"><p className="sectionLabel">Simples do começo ao último pedaço</p><h2>Do desejo<br/><em>ao pedido.</em></h2></div>
+        <div className="orderSteps">
+          <div className="orderStep reveal"><span>01</span><h3>Escolha seu sabor</h3><p>Conheça as opções apresentadas e descubra qual combina com o seu momento.</p></div>
+          <div className="orderStep reveal"><span>02</span><h3>Fale com a nossa casa</h3><p>Consulte diretamente a equipe sobre disponibilidade, quantidades e encomendas.</p></div>
+          <div className="orderStep reveal"><span>03</span><h3>Leve sabor para a mesa</h3><p>Confirme os detalhes do pedido e prepare-se para compartilhar uma experiência deliciosa.</p></div>
+        </div>
+        <button className="button buttonGold orderGuideCta" onClick={order}>Começar meu pedido <span>↗</span></button>
+      </section>
+
+      <section className="visitUs">
+        <div className="visitPhoto reveal"><img src="/produto-hero.jpg" alt="Produtos disponíveis na Casa do Panettone"/><div className="visitBadge"><span>✦</span>Loja de fábrica</div></div>
+        <div className="visitCopy reveal"><p className="sectionLabel">Venha conhecer a nossa casa</p><h2>Mais perto do<br/><em>sabor.</em></h2><p>Quer receber a localização, consultar o horário de atendimento ou saber o que está disponível hoje? Fale com a equipe antes de visitar.</p><div className="visitFacts"><div><small>Localização</small><strong>Consulte a rota com a equipe</strong></div><div><small>Funcionamento</small><strong>Confirme o horário de hoje</strong></div><div><small>Atendimento</small><strong>Direto com a loja de fábrica</strong></div></div><button className="button buttonGold" onClick={order}>Pedir informações <span>↗</span></button></div>
+      </section>
+
       <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem reveal ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i}><span>0{i+1}</span>{q}<b>{activeFaq===i?"−":"+"}</b></button><div className="answer"><p>{a}</p></div></div>)}</div></section>
 
       <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone.</p><button className="button buttonCream" onClick={()=>setContactNotice(true)}>Quero fazer meu pedido <span>↗</span></button>{contactNotice&&<div className="notice" role="status">O contato oficial será adicionado aqui. Enquanto isso, fale com a loja pelos canais oficiais da marca.</div>}</section>
@@ -106,9 +132,9 @@ export default function Home() {
           <button className="footerOrder" onClick={order}><span>Fazer meu<br/>pedido</span><b>↗</b></button>
         </div>
         <div className="footerMiddle">
-          <div className="footerSignature"><b>Casa do Panettone</b><p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p></div>
-          <div className="footerColumn"><p className="footerLabel">Explore</p><a href="#inicio">Início <span>↗</span></a><a href="#sabores">Sabores <span>↗</span></a><a href="#nossa-casa">Nossa casa <span>↗</span></a><a href="#experiencia">Experiência <span>↗</span></a></div>
-          <div className="footerColumn"><p className="footerLabel">Atendimento</p><button onClick={order}>Fazer um pedido <span>↗</span></button><a href="#contato">Fale com a gente <span>↗</span></a><p>Loja de fábrica</p></div>
+          <div className="footerSignature"><b>Casa do Panettone</b><p>Receitas cheias de sabor, feitas para transformar qualquer momento em celebração.</p><button className="footerContact" onClick={order}>Falar com a loja <span>↗</span></button></div>
+          <div className="footerColumn"><p className="footerLabel">Links rápidos</p><a href="#inicio">Início <span>↗</span></a><a href="#sabores">Sabores <span>↗</span></a><a href="#nossa-casa">Nossa casa <span>↗</span></a><a href="#experiencia">Experiência <span>↗</span></a><a href="#contato">Contato <span>↗</span></a></div>
+          <div className="footerColumn"><p className="footerLabel">Visite e acompanhe</p><button onClick={order}>WhatsApp <span>↗</span></button><p>Instagram · perfil oficial</p><p>Endereço · consulte a localização</p><p>Horário · confirme antes de visitar</p></div>
           <a className="backTop" href="#inicio" aria-label="Voltar ao início">↑<small>Voltar ao topo</small></a>
         </div>
         <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">✦ Feito com carinho · servido com sabor ✦</span><span>Todos os direitos reservados</span></div>
