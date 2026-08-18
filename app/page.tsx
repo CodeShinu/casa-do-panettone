@@ -102,7 +102,6 @@ export default function Home() {
 
       <footer>
         <div className="footerTop">
-          <div className="footerEmblem"><img src="/logo-premium.png" alt="Casa do Panettone — Loja de Fábrica"/></div>
           <div className="footerStatement"><p className="footerLabel">Uma última fatia?</p><h2>Da nossa casa<br/><em>para a sua.</em></h2></div>
           <button className="footerOrder" onClick={order}><span>Fazer meu<br/>pedido</span><b>↗</b></button>
         </div>
