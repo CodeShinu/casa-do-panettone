@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Casa do Panettone | Sabor direto da fábrica",
     description: "Panettones macios, saborosos e feitos para compartilhar.",
-    icons: { icon: "/logo-premium.png", shortcut: "/logo-premium.png" },
+    icons: { icon: "/logo-casa-nova.png", shortcut: "/logo-casa-nova.png" },
     openGraph: { title: "Casa do Panettone", description: "Sabor direto da loja de fábrica.", type: "website", images: [image] },
     twitter: { card: "summary_large_image", title: "Casa do Panettone", description: "Sabor direto da loja de fábrica.", images: [image] },
   };

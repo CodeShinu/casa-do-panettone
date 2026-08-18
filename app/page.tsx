@@ -116,7 +116,7 @@ export default function Home() {
       <div className="scrollProgress" ref={progressRef} aria-hidden="true" />
       <header className={`siteHeader ${scrolled ? "isScrolled" : ""}`}>
         <a className="brand" href="#inicio" aria-label="Casa do Panettone, início">
-          <span className="brandMark"><img src="/logo-premium.png" alt="" /></span>
+          <span className="brandMark"><img src="/logo-casa-nova.png" alt="" /></span>
           <span className="brandType"><b>Casa do Panettone</b><small>Loja de fábrica</small></span>
         </a>
         <nav className="navPill" aria-label="Navegação principal"><a className={activeSection==="sabores"?"active":""} href="#sabores"><span>01</span> Sabores</a><a className={activeSection==="diferenciais"?"active":""} href="#diferenciais"><span>02</span> Diferenciais</a><a className={activeSection==="nossa-casa"?"active":""} href="#nossa-casa"><span>03</span> Nossa casa</a><a className={activeSection==="visite"?"active":""} href="#visite"><span>04</span> Visite</a></nav>
@@ -145,7 +145,7 @@ export default function Home() {
       <section className="manifesto reveal">
         <p className="sectionLabel">Tem coisas que a gente não explica. Sente.</p>
         <h2>Macio por dentro.<br/><em>Dourado por fora.</em><br/>Difícil é parar na primeira fatia.</h2>
-        <div className="crumb brandSymbol" aria-hidden="true"><img src="/simbolo-casa-panettone.png" alt="" width="1536" height="1536" loading="lazy" decoding="async"/></div>
+        <div className="crumb brandSymbol" aria-hidden="true"><img src="/logo-casa-nova.png" alt="" width="1536" height="1536" loading="lazy" decoding="async"/></div>
       </section>
 
       <section className="products" id="sabores">
@@ -170,9 +170,9 @@ export default function Home() {
       <section className="whyUs" id="diferenciais">
         <div className="whyIntro reveal"><p className="sectionLabel">O cuidado mora nos detalhes</p><h2>Mais que panettone.<br/><em>Um momento inteiro.</em></h2><p>Cada escolha importa: o sabor, a textura, a apresentação e a alegria de colocar algo especial no centro da mesa.</p></div>
         <div className="whyGrid">
-          <article className="whyCard reveal"><span>01</span><div className="whyMark"><img src="/simbolo-casa-panettone.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Fábrica</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
-          <article className="whyCard featured reveal"><span>02</span><div className="whyMark"><img src="/simbolo-casa-panettone.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Encontro</div><h3>Receitas para<br/>compartilhar</h3><p>Panettones que chegam à mesa para acompanhar encontros, presentes e momentos especiais.</p></article>
-          <article className="whyCard reveal"><span>03</span><div className="whyMark"><img src="/simbolo-casa-panettone.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Sabor</div><h3>Sabor em cada<br/>pedaço</h3><p>Opções com gotas sabor chocolate e frutas para escolher a receita que combina com você.</p></article>
+          <article className="whyCard reveal"><span>01</span><div className="whyMark"><img src="/logo-casa-nova.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Fábrica</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
+          <article className="whyCard featured reveal"><span>02</span><div className="whyMark"><img src="/logo-casa-nova.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Encontro</div><h3>Receitas para<br/>compartilhar</h3><p>Panettones que chegam à mesa para acompanhar encontros, presentes e momentos especiais.</p></article>
+          <article className="whyCard reveal"><span>03</span><div className="whyMark"><img src="/logo-casa-nova.png" alt="" width="1536" height="1536" loading="lazy"/></div><div className="whyWord">Sabor</div><h3>Sabor em cada<br/>pedaço</h3><p>Opções com gotas sabor chocolate e frutas para escolher a receita que combina com você.</p></article>
         </div>
       </section>
 

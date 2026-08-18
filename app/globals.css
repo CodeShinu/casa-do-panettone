@@ -100,3 +100,6 @@ footer{display:block;padding:0 max(28px,calc((100vw - 1400px)/2));background:rad
 @media(max-width:900px){.photoJournal{padding:100px 0}.photoJournalHead{grid-template-columns:1fr;gap:28px;width:calc(100% - 40px);margin-bottom:45px}.photoJournalHead h2{font-size:clamp(3.7rem,14vw,5.5rem)}.journalControls span{display:none}.photoJournalRow{padding-left:20px;padding-right:20px}.journalCard{flex-basis:78vw}.journalImage,.journalCard1 .journalImage,.journalCard2 .journalImage{height:520px;margin-top:0;border-radius:160px 160px 22px 22px}}
 
 .contactInstagram{display:block;width:max-content;margin:26px auto 0;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.5);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.contactInstagram span{margin-left:14px}
+
+/* New official logo treatment */
+.brandMark{background:#2b150d}.brandMark img,.isScrolled .brandMark img{width:88%!important;height:88%!important;object-fit:contain!important;mix-blend-mode:normal!important}.brandSymbol img,.whyMark img{object-fit:contain!important;mix-blend-mode:normal!important}.whyMark{padding:7px;background:#2b150d}.whyCard.featured .whyMark{background:#f7ead3}.brandSymbol{opacity:.13}
