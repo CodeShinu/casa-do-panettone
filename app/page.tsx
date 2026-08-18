@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const videos = [
   { src: "/reel-1.mp4", label: "Um sabor que chama" },
@@ -25,6 +25,7 @@ export default function Home() {
   const [product, setProduct] = useState<string | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [contactNotice, setContactNotice] = useState(false);
+  const closeModalRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -34,28 +35,39 @@ export default function Home() {
     return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen || product ? "hidden" : "";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setMenuOpen(false); setProduct(null); }
+    };
+    window.addEventListener("keydown", onKey);
+    if (product) requestAnimationFrame(() => closeModalRef.current?.focus());
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+  }, [menuOpen, product]);
+
   const order = () => { setContactNotice(true); document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" }); };
 
   return (
     <main>
+      <a className="skipLink" href="#conteudo">Pular para o conteúdo</a>
       <header className={`siteHeader ${scrolled ? "isScrolled" : ""}`}>
         <a className="brand" href="#inicio" aria-label="Casa do Panettone, início">
           <span className="brandMark"><img src="/logo-premium.png" alt="" /></span>
           <span className="brandType"><b>Casa do Panettone</b><small>Loja de fábrica</small></span>
         </a>
-        <nav className="navPill" aria-label="Navegação principal"><a href="#sabores"><span>01</span> Sabores</a><a href="#nossa-casa"><span>02</span> Nossa casa</a><a href="#experiencia"><span>03</span> Experiência</a><a href="#contato"><span>04</span> Contato</a></nav>
+        <nav className="navPill" aria-label="Navegação principal"><a href="#sabores"><span>01</span> Sabores</a><a href="#diferenciais"><span>02</span> Diferenciais</a><a href="#nossa-casa"><span>03</span> Nossa casa</a><a href="#visite"><span>04</span> Visite</a></nav>
         <button className="button headerCta" onClick={order}><span className="ctaDot"/> Fazer meu pedido <b>↗</b></button>
-        <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu" aria-expanded={menuOpen}><span/><span/></button>
+        <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} aria-controls="menu-mobile"><span/><span/></button>
       </header>
 
-      <div className={`mobileMenu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+      <div id="menu-mobile" className={`mobileMenu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         {[["Sabores","#sabores"],["Nossa casa","#nossa-casa"],["Experiência","#experiencia"],["Contato","#contato"]].map(([label,href],i)=><a key={href} href={href} onClick={()=>setMenuOpen(false)}><small>0{i+1}</small>{label}</a>)}
       </div>
 
       <section className="hero" id="inicio">
         <video className="heroVideo" autoPlay muted loop playsInline poster="/produto-hero.jpg"><source src="/hero.mp4" type="video/mp4" /></video>
         <div className="heroShade" />
-        <div className="heroContent">
+        <div className="heroContent" id="conteudo">
           <p className="eyebrow">Direto da nossa fábrica</p>
           <h1>O sabor que faz qualquer momento virar <em>celebração.</em></h1>
           <p className="lead">Receitas macias, generosas e cheias de carinho — feitas para compartilhar, presentear ou guardar só para você.</p>
@@ -76,17 +88,17 @@ export default function Home() {
         <div className="sectionHead reveal"><div><p className="sectionLabel">Escolha o seu favorito</p><h2>Sabores que<br/>falam por si.</h2></div><p>Do café demorado ao presente inesperado, existe uma receita da nossa casa para deixar o momento ainda mais gostoso.</p></div>
         <div className="productGrid">
           <article className="productCard chocolate reveal" onClick={()=>setProduct("Gotas sabor chocolate")} tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setProduct("Gotas sabor chocolate")}>
-            <div className="productNumber">01</div><div className="productImage"><img src="/produto-close.jpg" alt="Panettone Casa do Panettone com gotas sabor chocolate, 400 gramas" /></div>
+            <div className="productNumber">01</div><div className="productImage"><img src="/produto-close.jpg" alt="Panettone Casa do Panettone com gotas sabor chocolate, 400 gramas" width="1080" height="1440" loading="lazy" decoding="async" /></div>
             <div className="productInfo"><div><p>Generoso · 400 g</p><h3>Gotas sabor<br/><em>chocolate</em></h3></div><button aria-label="Ver produto com gotas sabor chocolate">↗</button></div>
           </article>
           <article className="productCard fruits reveal" onClick={()=>setProduct("Panettone de frutas")} tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setProduct("Panettone de frutas")}>
-            <div className="productNumber">02</div><div className="productImage"><img src="/produto-hero.jpg" alt="Panettones Casa do Panettone de frutas e chocolate" /></div>
+            <div className="productNumber">02</div><div className="productImage"><img src="/produto-hero.jpg" alt="Panettones Casa do Panettone de frutas e chocolate" width="1440" height="1920" loading="lazy" decoding="async" /></div>
             <div className="productInfo"><div><p>Clássico · 400 g</p><h3>Panettone<br/><em>de frutas</em></h3></div><button aria-label="Ver panettone de frutas">↗</button></div>
           </article>
         </div>
       </section>
 
-      <section className="whyUs">
+      <section className="whyUs" id="diferenciais">
         <div className="whyIntro reveal"><p className="sectionLabel">O cuidado mora nos detalhes</p><h2>Mais que panettone.<br/><em>Um momento inteiro.</em></h2><p>Cada escolha importa: o sabor, a textura, a apresentação e a alegria de colocar algo especial no centro da mesa.</p></div>
         <div className="whyGrid">
           <article className="whyCard reveal"><span>01</span><div className="whyIcon">✦</div><h3>Direto da loja<br/>de fábrica</h3><p>Uma experiência próxima da marca, com atendimento para conhecer os sabores disponíveis.</p></article>
@@ -96,7 +108,7 @@ export default function Home() {
       </section>
 
       <section className="story" id="nossa-casa">
-        <div className="storyMedia reveal"><img src="/produto-hero.jpg" alt="Seleção de produtos da Casa do Panettone"/><span>Da nossa casa<br/>para a sua.</span></div>
+        <div className="storyMedia reveal"><img src="/produto-hero.jpg" alt="Seleção de produtos da Casa do Panettone" width="1440" height="1920" loading="lazy" decoding="async"/><span>Da nossa casa<br/>para a sua.</span></div>
         <div className="storyCopy reveal"><p className="sectionLabel">Nossa casa</p><h2>Uma receita feita para criar <em>memórias.</em></h2><p>Na Casa do Panettone, cada receita nasce para levar mais sabor à mesa. Da nossa fábrica para a sua casa, unimos carinho, tradição e aquela vontade irresistível de cortar só mais uma fatia.</p><div className="storyPoints"><span><b>01</b>Cuidado em cada receita</span><span><b>02</b>Direto da loja de fábrica</span><span><b>03</b>Perto de quem saboreia</span></div></div>
       </section>
 
@@ -117,14 +129,26 @@ export default function Home() {
         <button className="button buttonGold orderGuideCta" onClick={order}>Começar meu pedido <span>↗</span></button>
       </section>
 
-      <section className="visitUs">
-        <div className="visitPhoto reveal"><img src="/produto-hero.jpg" alt="Produtos disponíveis na Casa do Panettone"/><div className="visitBadge"><span>✦</span>Loja de fábrica</div></div>
+      <section className="giftSection">
+        <div className="giftCopy reveal"><p className="sectionLabel">Para dividir, presentear e celebrar</p><h2>Um gesto simples.<br/><em>Cheio de sabor.</em></h2><p>Seja para levar à mesa, surpreender alguém ou organizar um pedido em quantidade, a equipe pode orientar sobre as opções disponíveis.</p><div className="giftActions"><button className="button buttonGold" onClick={order}>Consultar opções <span>↗</span></button><a className="giftLink" href="#sabores">Ver sabores <span>↓</span></a></div></div>
+        <div className="giftMosaic reveal"><div className="giftTall"><img src="/produto-close.jpg" alt="Panettone com gotas sabor chocolate" width="1080" height="1440" loading="lazy" decoding="async"/></div><div className="giftSmall"><img src="/produto-hero.jpg" alt="Seleção de panettones da marca" width="1440" height="1920" loading="lazy" decoding="async"/></div><div className="giftQuote"><span>✦</span><p>Um presente que começa pelos olhos e fica na memória pelo sabor.</p></div></div>
+      </section>
+
+      <section className="foodInfo">
+        <div className="foodInfoTitle reveal"><p className="sectionLabel">Escolha com informação</p><h2>Antes de<br/><em>saborear.</em></h2></div>
+        <div className="foodInfoContent reveal"><p>Informações de ingredientes, alergênicos, conservação e validade devem ser consultadas diretamente no rótulo de cada produto. Em caso de dúvida, fale com a equipe antes de realizar o pedido.</p><div className="foodInfoChecks"><span>Consulte o rótulo do produto</span><span>Confirme informações com a loja</span><span>Verifique o produto no recebimento</span></div><button className="textButton" onClick={order}>Tirar uma dúvida <b>↗</b></button></div>
+      </section>
+
+      <section className="visitUs" id="visite">
+        <div className="visitPhoto reveal"><img src="/produto-hero.jpg" alt="Produtos disponíveis na Casa do Panettone" width="1440" height="1920" loading="lazy" decoding="async"/><div className="visitBadge"><span>✦</span>Loja de fábrica</div></div>
         <div className="visitCopy reveal"><p className="sectionLabel">Venha conhecer a nossa casa</p><h2>Mais perto do<br/><em>sabor.</em></h2><p>Quer receber a localização, consultar o horário de atendimento ou saber o que está disponível hoje? Fale com a equipe antes de visitar.</p><div className="visitFacts"><div><small>Localização</small><strong>Consulte a rota com a equipe</strong></div><div><small>Funcionamento</small><strong>Confirme o horário de hoje</strong></div><div><small>Atendimento</small><strong>Direto com a loja de fábrica</strong></div></div><button className="button buttonGold" onClick={order}>Pedir informações <span>↗</span></button></div>
       </section>
 
       <section className="faq"><div className="faqTitle reveal"><p className="sectionLabel">Antes da primeira fatia</p><h2>Perguntas<br/><em>frequentes.</em></h2></div><div className="faqList">{faqs.map(([q,a],i)=><div className={`faqItem reveal ${activeFaq===i?"active":""}`} key={q}><button onClick={()=>setActiveFaq(activeFaq===i?null:i)} aria-expanded={activeFaq===i}><span>0{i+1}</span>{q}<b>{activeFaq===i?"−":"+"}</b></button><div className="answer"><p>{a}</p></div></div>)}</div></section>
 
       <section className="contact" id="contato"><div className="contactGlow"/><p className="sectionLabel">A vontade bateu?</p><h2>Seu próximo momento gostoso <em>começa aqui.</em></h2><p>Escolha seu sabor e fale diretamente com a Casa do Panettone.</p><button className="button buttonCream" onClick={()=>setContactNotice(true)}>Quero fazer meu pedido <span>↗</span></button>{contactNotice&&<div className="notice" role="status">O contato oficial será adicionado aqui. Enquanto isso, fale com a loja pelos canais oficiais da marca.</div>}</section>
+
+      <div className="mobileAction" aria-label="Ação rápida"><button onClick={order}><span>Fazer meu pedido</span><b>↗</b></button></div>
 
       <footer>
         <div className="footerTop">
@@ -140,7 +164,7 @@ export default function Home() {
         <div className="footerBottom"><span>© {new Date().getFullYear()} Casa do Panettone</span><span className="footerSeal">✦ Feito com carinho · servido com sabor ✦</span><span>Todos os direitos reservados</span></div>
       </footer>
 
-      {product&&<div className="modalBackdrop" onClick={()=>setProduct(null)} role="presentation"><div className="productModal" role="dialog" aria-modal="true" aria-label={product} onClick={e=>e.stopPropagation()}><button className="close" onClick={()=>setProduct(null)} aria-label="Fechar">×</button><p className="sectionLabel">Casa do Panettone</p><h2>{product}</h2><p>Uma receita macia e cheia de sabor, feita para deixar o momento ainda mais especial.</p><button className="button buttonGold" onClick={()=>{setProduct(null);order()}}>Quero este sabor <span>↗</span></button></div></div>}
+      {product&&<div className="modalBackdrop" onClick={()=>setProduct(null)} role="presentation"><div className="productModal" role="dialog" aria-modal="true" aria-label={product} onClick={e=>e.stopPropagation()}><button ref={closeModalRef} className="close" onClick={()=>setProduct(null)} aria-label="Fechar">×</button><p className="sectionLabel">Casa do Panettone</p><h2>{product}</h2><p>Uma receita macia e cheia de sabor, feita para deixar o momento ainda mais especial.</p><button className="button buttonGold" onClick={()=>{setProduct(null);order()}}>Quero este sabor <span>↗</span></button></div></div>}
     </main>
   );
 }
