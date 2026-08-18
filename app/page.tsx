@@ -37,11 +37,16 @@ const photoStories = [
   ["/journal-03.jpg","Dourado por fora","Receitas generosas, prontas para ocupar o centro da mesa."],
   ["/journal-04.jpg","Combinação perfeita","Panettone, café e tempo para aproveitar."],
   ["/journal-05.jpg","Cada pedaço conta","Frutas e textura em uma experiência cheia de sabor."],
-  ["/journal-06.jpg","Uma casa de sabores","Opções para presentear, compartilhar e celebrar."],
-  ["/journal-07.jpg","Pronto para levar","Da nossa loja de fábrica para a sua mesa."],
-  ["/journal-08.jpg","O favorito da casa","Gotas sabor chocolate em uma receita irresistível."],
-  ["/journal-09.jpg","Escolha o seu","Frutas ou chocolate: difícil é ficar com apenas um."],
-  ["/journal-10.jpg","Para todos os momentos","Uma seleção feita para reunir pessoas."],
+  ["/journal-new-06.jpeg","Pequeno no tamanho","Panettone de frutas de 85 g para um momento só seu."],
+  ["/journal-new-07.jpeg","Pronto para grandes pedidos","Caixa com 54 unidades de chocolate de 85 g para ações, equipes e eventos.","wide"],
+  ["/journal-new-08.jpeg","Frutas em quantidade","Caixa com 54 unidades individuais para compartilhar.","wide"],
+  ["/journal-new-09.jpeg","Uma lembrança cheia de sabor","Versão individual de frutas pronta para presentear."],
+  ["/journal-new-10.jpeg","Para reunir muita gente","Caixa com 12 panettones de frutas de 400 g.","wide"],
+  ["/journal-new-11.jpeg","Chocolate em tamanho clássico","Panettone de 400 g com gotas sabor chocolate."],
+  ["/journal-new-12.jpeg","O clássico de frutas","Panettone de frutas de 400 g para colocar no centro da mesa."],
+  ["/journal-new-13.jpeg","Chocolate individual","Uma porção de 85 g para presentear ou saborear."],
+  ["/journal-new-14.jpeg","Chocolate para compartilhar","Caixa com 12 unidades de 400 g para pedidos em quantidade.","wide"],
+  ["/journal-new-15.jpeg","A receita em destaque","Um olhar de perto para a textura e o cuidado em cada unidade."],
 ];
 
 const tickerPhrases = ["Feito para compartilhar", "Gotas de chocolate", "Frutas selecionadas", "Sabor que abraça", "Direto da loja de fábrica", "Receita feita com carinho", "Tradição em cada pedaço", "Ingredientes selecionados", "Um presente cheio de sabor", "Momentos que ficam na memória", "Qualidade artesanal", "Perfeito para celebrar", "Do forno para a sua mesa", "Carinho em cada detalhe", "Uma experiência deliciosa", "Feito para reunir pessoas", "Sabor de momentos especiais", "Fresquinho e irresistível", "Tradição que conquista", "Compartilhe felicidade"];
@@ -164,7 +169,7 @@ export default function Home() {
 
       <section className="photoJournal" aria-labelledby="journal-title">
         <div className="photoJournalHead reveal"><div><p className="sectionLabel">Caderno de sabores</p><h2 id="journal-title">De perto,<br/><em>é ainda melhor.</em></h2></div><div><p>Texturas, detalhes e momentos reais da Casa do Panettone — porque algumas imagens quase têm cheiro de fornada nova.</p><div className="journalControls"><button onClick={()=>movePhotos(-1)} aria-label="Fotos anteriores">←</button><span>Deslize para conhecer</span><button onClick={()=>movePhotos(1)} aria-label="Próximas fotos">→</button></div></div></div>
-        <div className="photoJournalRow" ref={photoRowRef}>{photoStories.map(([src,title,copy],i)=><figure className={`journalCard journalCard${i%3}`} key={src}><div className="journalImage"><img src={src} alt={`${title}. ${copy}`} width="1440" height="1920" loading="lazy" decoding="async"/><span>{String(i+1).padStart(2,"0")}</span></div><figcaption><h3>{title}</h3><p>{copy}</p></figcaption></figure>)}</div>
+        <div className="photoJournalRow" ref={photoRowRef}>{photoStories.map(([src,title,copy,format],i)=><figure className={`journalCard journalCard${i%3}${format === "wide" ? " journalWide" : ""}`} key={src}><div className="journalImage"><img src={src} alt={`${title}. ${copy}`} width="1440" height="1920" loading="lazy" decoding="async"/><span>{String(i+1).padStart(2,"0")}</span></div><figcaption><h3>{title}</h3><p>{copy}</p></figcaption></figure>)}</div>
       </section>
 
       <section className="whyUs" id="diferenciais">
