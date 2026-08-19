@@ -38,14 +38,14 @@ const photoStories = [
   ["/journal-04.jpg","Combinação perfeita","Panettone, café e tempo para aproveitar."],
   ["/journal-05.jpg","Cada pedaço conta","Frutas e textura em uma experiência cheia de sabor."],
   ["/journal-new-06.jpeg","Pequeno no tamanho","Panettone de frutas de 85 g para um momento só seu."],
-  ["/journal-new-07.jpeg","Pronto para grandes pedidos","Caixa com 54 unidades de chocolate de 85 g para ações, equipes e eventos.","wide"],
-  ["/journal-new-08.jpeg","Frutas em quantidade","Caixa com 54 unidades individuais para compartilhar.","wide"],
+  ["/journal-new-07.webp","Pronto para grandes pedidos","Caixa com 54 unidades de chocolate de 85 g para ações, equipes e eventos.","wide"],
+  ["/journal-new-08.webp","Frutas em quantidade","Caixa com 54 unidades individuais para compartilhar.","wide"],
   ["/journal-new-09.jpeg","Uma lembrança cheia de sabor","Versão individual de frutas pronta para presentear."],
-  ["/journal-new-10.jpeg","Para reunir muita gente","Caixa com 12 panettones de frutas de 400 g.","wide"],
+  ["/journal-new-10.webp","Para reunir muita gente","Caixa com 12 panettones de frutas de 400 g.","wide"],
   ["/journal-new-11.jpeg","Chocolate em tamanho clássico","Panettone de 400 g com gotas sabor chocolate."],
   ["/journal-new-12.jpeg","O clássico de frutas","Panettone de frutas de 400 g para colocar no centro da mesa."],
   ["/journal-new-13.jpeg","Chocolate individual","Uma porção de 85 g para presentear ou saborear."],
-  ["/journal-new-14.jpeg","Chocolate para compartilhar","Caixa com 12 unidades de 400 g para pedidos em quantidade.","wide"],
+  ["/journal-new-14.webp","Chocolate para compartilhar","Caixa com 12 unidades de 400 g para pedidos em quantidade.","wide"],
   ["/journal-new-15.jpeg","A receita em destaque","Um olhar de perto para a textura e o cuidado em cada unidade."],
 ];
 
