@@ -113,6 +113,8 @@ footer{display:block;padding:0 max(28px,calc((100vw - 1400px)/2));background:rad
 .journalCard.journalWide .journalImage img{object-fit:contain;border-radius:140px 140px 18px 18px}
 .journalCard figcaption{min-height:112px}
 @media(max-width:900px){.productGrid{grid-template-columns:1fr}.journalCard,.journalCard.journalWide{flex-basis:82vw}.journalImage,.journalCard1 .journalImage,.journalCard2 .journalImage,.journalCard.journalWide .journalImage{height:500px;margin-top:0;border-radius:160px 160px 22px 22px}.journalCard.journalWide .journalImage{padding:12px}.journalCard.journalWide .journalImage img{border-radius:130px 130px 14px 14px}}
+.journalCard.journalWide .journalImage{padding:0;background:#160b07}.journalCard.journalWide .journalImage img{object-fit:cover;border-radius:inherit}
+@media(max-width:900px){.journalCard.journalWide .journalImage{padding:0}}
 
 /* New official logo treatment */
 .brandMark{background:#2b150d}.brandMark img,.isScrolled .brandMark img{width:88%!important;height:88%!important;object-fit:contain!important;mix-blend-mode:normal!important}.brandSymbol img,.whyMark img{object-fit:contain!important;mix-blend-mode:normal!important}.whyMark{padding:7px;background:#2b150d}.whyCard.featured .whyMark{background:#f7ead3}.brandSymbol{opacity:.13}
